@@ -40,6 +40,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-icon-button-ink-color: white;
       }
 
+	  .panel {
+		background: url(../images/layout.jpg) top left no-repeat;
+		height: 192px;
+	}
+	
+		#dropShadow {
+		  position: relative;
+		  top: 0;
+		  left: 0;
+		  right: 0;
+		  height: 6px;
+		  box-shadow: inset 0px 5px 6px -3px rgba(0, 0, 0, 0.4);
+		}	
+	
+		.uuid {
+			color: #fff;
+			font-weight: 500;
+			text-shadow: 1px 1px 2px #000;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			margin: 0px 8px 8px;
+			padding: 0px 8px 8px;			
+		}	
+	
       .drawer-list {
         margin: 0 20px;
       }
@@ -68,11 +94,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <app-drawer-layout fullbleed>
       <!-- Drawer content -->
       <app-drawer id="drawer">
-        <app-toolbar>Menu</app-toolbar>
+        <app-toolbar class="panel">
+		<div class="uuid">Razaleigh</div><!--Data Binding Here {{}} -->
+		</app-toolbar>
+		<div id="dropShadow"></div>		
+		<!--<div class="panel"></div>-->
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="view1" href="/view1">View One</a>
           <a name="view2" href="/view2">View Two</a>
           <a name="view3" href="/view3">View Three</a>
+		  <a name="new-view" href="/new-view">New View</a>
         </iron-selector>
       </app-drawer>
 
@@ -94,6 +125,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <my-view1 name="view1"></my-view1>
           <my-view2 name="view2"></my-view2>
           <my-view3 name="view3"></my-view3>
+		  <my-new-view name="new-view"></my-new-view>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
