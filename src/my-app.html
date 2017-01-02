@@ -45,7 +45,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		height: 192px;
 	}
 	
-		#dropShadow {
+		.dropShadow {
 		  position: relative;
 		  top: 0;
 		  left: 0;
@@ -97,11 +97,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-toolbar class="panel">
 		<div class="uuid">Razaleigh</div><!--Data Binding Here {{}} -->
 		</app-toolbar>
-		<div id="dropShadow"></div>		
+		<div class="dropShadow"></div>		
 		<!--<div class="panel"></div>-->
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="view1" href="/view1">View One</a>
-          <a name="view2" href="/view2">View Two</a>
+          <a name="view1" href="/view1">Dasboard</a>
+          <a name="view2" href="/view2">Members Management</a>
           <a name="view3" href="/view3">View Three</a>
 		  <a name="new-view" href="/new-view">New View</a>
         </iron-selector>
@@ -113,9 +113,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-header condenses reveals effects="waterfall">
           <app-toolbar>
             <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
-            <div main-title>My App</div>
-          </app-toolbar>
+            <div main-title>ISI 32</div>
+          </app-toolbar>  
         </app-header>
+		<div class="dropShadow"></div>
 
         <iron-pages
             selected="[[page]]"
