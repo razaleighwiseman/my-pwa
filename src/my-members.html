@@ -1,0 +1,112 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="../bower_components/paper-item/paper-item-body.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-members">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+	  
+	  .info {
+		display: block;
+	  }
+
+	  paper-fab.blue {
+		--paper-fab-background: var(--paper-light-blue-500);
+		--paper-fab-keyboard-focus-background: var(--paper-light-blue-900);
+	  }
+
+    paper-fab {
+        position: absolute;
+        right: 25px;
+        bottom: 30px;          
+    }
+
+		table {
+			//font-family: arial, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		td, th {
+			//border: 1px solid #dddddd;
+			text-align: left;
+			padding: 8px;
+		}
+
+		tr:nth-child(even) {
+			background-color: #dddddd;
+		}	
+    </style>
+
+	<paper-card heading="Member List" class="info">
+	  <div class="card-content">
+		<table>
+		  <tr>
+			<th>No</th>
+			<th>Email</th>
+			<th>Phone</th>
+		  </tr>
+		  <tr>
+			<td>1</td>
+			<td>razaleighwiseman@gmail.com</td>
+			<td>0132230226</td>
+		  </tr>
+		  <tr>
+			<td>2</td>
+			<td>fchang@fakemail.com</td>
+			<td>0123456789</td>
+		  </tr>
+		  <tr>
+			<td>3</td>
+			<td>rmendel@fakemail.com</td>
+			<td>0123456789</td>
+		  </tr>
+		  <tr>
+			<td>4</td>
+			<td>hbennet@fakemail.com</td>
+			<td>0123456789</td>
+		  </tr>
+		  <tr>
+			<td>5</td>
+			<td>ytannamuri@fakemail.com</td>
+			<td>0123456789</td>
+		  </tr>
+		  <tr>
+			<td>6</td>
+			<td>grovelli@fakemail.com</td>
+			<td>0123456789</td>
+		  </tr>
+		</table>	  
+	  </div>
+	</paper-card>
+
+	<paper-fab icon="add" title="Add New Member" class="blue"></paper-fab>	
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-members',
+    });
+  </script>
+</dom-module>
