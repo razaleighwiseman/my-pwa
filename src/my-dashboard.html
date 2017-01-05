@@ -15,6 +15,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-item/paper-item-body.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="../bower_components/iron-icons/social-icons.html">
+<link rel="import" href="../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-styles/color.html">
+<link rel="import" href="../bower_components/paper-styles/typography.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-dashboard">
@@ -47,63 +55,125 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		--paper-item-focused-before: {
 		  opacity: 0;
 		};
+		
+		//border-bottom: 1px solid #DDD;
 	  }
 
       .secondary {
         color: gray;
         margin-left: 10px;
-      }	  
-    </style>
+      }
+	  
+	iron-icon{
+		color: var(--paper-light-blue-500);
+	}
 	
-	<paper-card heading="Dashboard" class="info">
+    .horizontal {
+      @apply(--layout-horizontal);
+    }
+    .justified {
+      @apply(--layout-justified);
+    }
+    .amber {
+      background: var(--paper-amber-900);
+    }
+    .lime {
+      background: var(--paper-lime-500);
+    }
+    .cyan {
+      background: var(--paper-cyan-500);
+    }
+    .dark {
+      background: var(--paper-blue-grey-500);
+    }
+    paper-card.dark, paper-card.amber, paper-card.lime, paper-card.cyan {
+      color: white;
+      --paper-card-header-color: white;
+    }
+  
+    </style>
+
+	<paper-card class="cyan">
 	  <div class="card-content">
-	  <!--
-	  <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-	  <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
-	  -->
-		<div role="listbox">
+	  <h3>600</h3>
+	  </div>	
+	  <div class="card-actions horizontal justified">
+		<paper-icon-button icon="account-balance-wallet"></paper-icon-button>
+		<paper-button noink>e-wallet</paper-button>
+	  </div>
+	</paper-card>
+	<paper-card class="dark">
+		<div class="card-content">
+		  <h3>0</h3>
+		</div>	
+	  <div class="card-actions horizontal justified">
+		<paper-icon-button icon="group-work"></paper-icon-button>
+		<paper-button noink>Downline</paper-button>
+	  </div>
+	</paper-card>	
+	<paper-card class="lime">
+		<div class="card-content">
+		  <h3>4077</h3>
+		</div>		
+	  <div class="card-actions horizontal justified">
+		<paper-icon-button icon="card-membership"></paper-icon-button>
+		<paper-button noink>Members</paper-button>
+	  </div>
+	</paper-card>	
+	
+	<paper-card heading="Overview" class="info">
+	  <div class="card-content">
+		<paper-listbox>
 		  <paper-icon-item>
-			<iron-icon icon="account-balance-wallet" item-icon></iron-icon>
+			<iron-icon icon="account-circle" item-icon></iron-icon>
 			<paper-item-body two-line>
-			  <div secondary>e-wallet</div>			  	
-			  <h3>600</h3>
+			  <div>Name</div>	
+			  <div secondary>RAZALEIGH BIN MAT</div>			  	
 			</paper-item-body>			
 		  </paper-icon-item>
 		  <paper-icon-item>
-			<iron-icon icon="group-work" item-icon></iron-icon>
+			<iron-icon icon="communication:phone" item-icon></iron-icon>
 			<paper-item-body two-line>
-			  <div secondary>Total Downline</div>			  	
-			  <h3>0</h3>
-			</paper-item-body>
+			  <div>Mobile Phone</div>	
+			  <div secondary>0132230226</div>			  	
+			</paper-item-body>			
 		  </paper-icon-item>
 		  <paper-icon-item>
-			<iron-icon icon="card-membership" item-icon></iron-icon>
+			<iron-icon icon="communication:email" item-icon></iron-icon>
 			<paper-item-body two-line>
-			  <div secondary>Total Member</div>			  	
-			  <h3>4077</h3>
-			</paper-item-body>
-		  </paper-icon-item>		  
-		</div>	  
+			  <div>Email</div>	
+			  <div secondary>razaleighwiseman@gmail.com</div>			  	
+			</paper-item-body>			
+		  </paper-icon-item>
+		  <paper-icon-item>
+			<iron-icon icon="date-range" item-icon></iron-icon>
+			<paper-item-body two-line>
+			  <div>Date Joined</div>	
+			  <div secondary>01/01/2017</div>			  	
+			</paper-item-body>			
+		  </paper-icon-item>
+		  <paper-icon-item>
+			<iron-icon icon="date-range" item-icon></iron-icon>
+			<paper-item-body two-line>
+			  <div>Date Activated</div>	
+			  <div secondary>01/01/2017</div>			  	
+			</paper-item-body>			
+		  </paper-icon-item>
+		  <paper-icon-item>
+			<iron-icon icon="social:people" item-icon></iron-icon>
+			<paper-item-body two-line>
+			  <div>Introducer</div>	
+			  <div secondary>ISMAIL MD DOM</div>			  	
+			</paper-item-body>			
+		  </paper-icon-item>		  		  
+		</paper-listbox>  
 	  </div>
-	</paper-card>
-
-	<paper-card heading="Overview" class="info">
-	  <div class="card-content">
-		<div role="listbox">
-		  <paper-item class="fancy">Name<span class="secondary">RAZALEIGH</span></paper-item>
-		  <paper-item class="fancy">Mobile Phone<span class="secondary">0132230226</span></paper-item>
-		  <paper-item class="fancy">Email<span class="secondary">razaleighwiseman@gmail.com</span></paper-item>
-		  <paper-item class="fancy">Date Joined<span class="secondary">01/01/2017</span></paper-item>
-		  <paper-item class="fancy">Date Activated<span class="secondary">01/01/2017</span></paper-item>
-		  <paper-item class="fancy">Introducer<span class="secondary">ISMAIL MD DOM</span></paper-item>
-		</div>	
-	  </div>
-	</paper-card>		
+	</paper-card>	
   </template>
 
   <script>
     Polymer({
-      is: 'my-dashboard',
+      is: 'my-dashboard' 
     });
   </script>
 </dom-module>
