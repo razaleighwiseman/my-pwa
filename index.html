@@ -94,6 +94,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </script>
 
+	<link rel="import" href="/bower_components/polymerfire/firebase-app.html">
     <link rel="import" href="/src/my-app.html">
 
     <style>
@@ -107,7 +108,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
   </head>
   <body>
+  
+  <!-- Configure Firebase app: -->
+	<firebase-app
+	  api-key="AIzaSyBQbHi8R-jtrOdtcpWnpTFGsGaVjKhbCFE"
+	  auth-domain="my-first-pwa-d623a.firebaseapp.com"
+	  database-url="https://my-first-pwa-d623a.firebaseio.com">
+	</firebase-app>
+ 
+ <!-- Instantiate the app -->	
     <my-app></my-app>
-    <!-- Built with love using Polymer Starter Kit -->
   </body>
 </html>

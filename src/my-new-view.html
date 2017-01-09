@@ -1,5 +1,9 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-slider/paper-slider.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-new-view">
@@ -19,6 +23,9 @@
 		<p>{{greeting}}</p>
 		<paper-slider min="-100" max="100" value="50"></paper-slider>
 	</div>
+	
+  <firebase-auth id="emailPassword" user="{{user}}" signed-in="{{signedIn}}" on-error="_handleEmailPWError" status-known="{{statusKnown}}">
+  </firebase-auth>	
   </template>
   <!-- Creates the element's prototype and registers it -->
   <script>
@@ -30,7 +37,15 @@
 		greeting: {
 		  type: String,
 		  value: "Hello!"
-		}
+		},
+		
+		user: {
+		  type: Object,
+		  notify: true,
+		  reflectToAttribute: true
+		},
+
+		
 	  }	  
     });
   </script>
