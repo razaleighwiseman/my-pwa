@@ -1,8 +1,10 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-slider/paper-slider.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/iron-form/iron-form.html">
 <link rel="import" href="../bower_components/polymerfire/polymerfire.html">
 <link rel="import" href="shared-styles.html">
@@ -15,20 +17,70 @@
         display: block;
 
         padding: 5px;
+		
       }
+	  
+	paper-material {
+      padding: 15px;
+	  background-color: white;
+      max-width: 350px;
+	  margin: auto;
+	  margin-top: 10%;
+    }	
+	
+	img {
+		width: 150px;
+		border-radius: 50%
+	}
+	
+	.header {
+		text-align: center;
+		margin-top: 20px;
+	}
+
+	paper-input {
+      margin-left: auto;
+      margin-right: auto;
+      width: 90%;	
+	}
+	
+	paper-checkbox {
+		margin-left: 5%;
+		margin-top: 15px;		
+	}
+	
+    paper-button {
+      width: 92%;
+      margin-top: 20px;
+      margin-left: 15px;
+	  margin-bottom: 15px;	
+    }
+
+	paper-button.blue {
+	background-color: var(--paper-light-blue-500);
+	color: white;
+	}	
     </style>
 	
-	<div class="card">
+	<!--<div class="card">
 		<div class="circle">N</div>
 		<h1>New User</h1>
 		<p>{{greeting}}</p>
 		<paper-slider min="-100" max="100" value="50"></paper-slider>
-	</div>
+	</div>-->
+	<paper-material elevation="3">
+	  <div class="container header">
+	   <img src="/images/photo.jpg">
+	   <h3>Login</h3>
+	  </div> 
 	
-	<input placeholder="email">
-	<input placeholder="password">
-	<button on-tap="login">Login</button>
-	<button on-tap="create_user">Create User</button>
+	  <paper-input name="email" label="Email" value="{{email}}"></paper-input>
+	  <paper-input name="password" label="Password" type="password" value="{{password}}"></paper-input>
+	  <paper-checkbox>Remember Me</paper-checkbox>
+	  <paper-button class="blue" raised on-tap="submitForm">Login</paper-button>
+	  <!--<paper-button raised on-tap="sign_out">Logout</paper-button>-->
+	</paper-material>
+	<!--<button on-tap="create_user">Create User</button>-->
 	
 	<p>Login as: {{user.email}}</p>
 
@@ -56,7 +108,15 @@
 		user: {
             type: Object,
             value: null			
-		}
+		},
+		
+		email: {
+			type: String
+		},
+
+		password: {
+			type: String
+		}	  
 				
 	  },
 	  
@@ -66,8 +126,25 @@
 	  
 	  create_user: function() {
 		this.$.auth.createUserWithEmailAndPassword('razaleighwiseman@gmail.com', 'test123');  
-	  }
+	  },
 	  
-    });
+	submitForm: function() {
+	  this.$.auth.signInWithEmailAndPassword(this.email, this.password).then(function(response) {
+			// successful authentication response here
+			console.log(response);
+	  }).catch(function(error) {
+			// unsuccessful authentication response here
+			console.log(error);
+	  });;
+	},
+
+	sign_out: function() {
+		this.$.auth.signOut();
+	},
+	
+	handleError: function(err) {
+	}
+	  
+    });	
   </script>
 </dom-module>
