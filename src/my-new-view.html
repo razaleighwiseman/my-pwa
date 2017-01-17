@@ -4,9 +4,10 @@
 <link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-material/paper-material.html">
-<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="../bower_components/polymerfire/polymerfire.html">
+<link rel="import" href="./my-app.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-new-view">
@@ -25,7 +26,7 @@
 	  background-color: white;
       max-width: 350px;
 	  margin: auto;
-	  margin-top: 5%;
+	  margin-top: 10%;
     }	
 	
 	img {
@@ -59,6 +60,11 @@
 	paper-button.blue {
 	background-color: var(--paper-light-blue-500);
 	color: white;
+	}
+
+	#toast {
+	--paper-toast-background-color: red;
+	--paper-toast-color: white;
 	}	
     </style>
 	
@@ -74,24 +80,24 @@
 	   <h3>Login</h3>
 	  </div> 
 	
-	  <paper-input name="email" label="Email" value="{{email}}"></paper-input>
-	  <paper-input name="password" label="Password" type="password" value="{{password}}"></paper-input>
+	  <paper-input name="email" label="Email" value="{{email}}" validator="email-validator" error-message="Invalid email address" required auto-validate></paper-input>
+	  <paper-input name="password" label="Password" type="password" value="{{password}}" required></paper-input>
 	  <paper-checkbox>Remember Me</paper-checkbox>
 	  <paper-button class="blue" raised on-tap="submitForm">Login</paper-button>
-	  <!--<paper-button raised on-tap="sign_out">Logout</paper-button>-->
+	  <paper-button raised on-tap="sign_out">Logout</paper-button>
 	</paper-material>
-	<!--<button on-tap="create_user">Create User</button>-->
+	<!--<button on-tap="create_user">Create User</button>-->	
 	
-	<p>Login as: {{user.email}}</p>
+	<paper-toast id="toast" class="fit-bottom" text=[[code]]></paper-toast>
 
-	<firebase-auth id="auth" user="{{user}}" on-error="handleError">
+	<firebase-auth id="auth" user="{{user}}" signed-in="{{signedIn}}" on-error="handleError">
 	</firebase-auth>
 	
     <firebase-document
         id="document"
         path="/users/{{userId}}/notes/{{noteId}}"
         data="{{myData}}">
-    </firebase-document>  
+    </firebase-document> 
   </template>
   <!-- Creates the element's prototype and registers it -->
   <script>
@@ -110,13 +116,20 @@
             value: null			
 		},
 		
-		email: {
-			type: String
-		},
+		email: String,
 
-		password: {
-			type: String
-		}	  
+		password: String,
+
+		code: {
+			type: String,
+			value: "This is a styling toast"
+		},
+		
+        signedIn: {
+          type: Boolean,
+          notify: true,
+          reflectToAttribute: true
+        }		
 				
 	  },
 	  
@@ -129,13 +142,16 @@
 	  },
 	  
 	submitForm: function() {
+	  var that = this;
 	  this.$.auth.signInWithEmailAndPassword(this.email, this.password).then(function(response) {
 			// successful authentication response here
-			console.log(response);
+			console.log(response);			
 	  }).catch(function(error) {
 			// unsuccessful authentication response here
 			console.log(error);
-	  });;
+			that.code = error.code;
+			that.$.toast.open(); 
+	  }); 
 	},
 
 	sign_out: function() {
